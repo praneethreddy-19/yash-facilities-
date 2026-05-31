@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Policies &amp; Careers | Yash Facilities Bengaluru</title>
+  <meta name="description" content="Read Yash Facilities Privacy Policy, Terms of Service, and learn about career opportunities. Join our team of professional caregivers in Bangalore.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Policies specific styles built to match the design */
+    .policies-hero {
+      padding: calc(var(--header-height) + 40px) 0 60px;
+      background: linear-gradient(135deg, hsl(262, 47%, 20%) 0%, hsl(262, 47%, 45%) 100%);
+      color: var(--bg-white);
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .policies-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+      z-index: 1;
+    }
+    
+    .policies-hero .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .policies-hero h1 {
+      font-size: 2.5rem;
+      color: var(--bg-white);
+      margin-top: 8px;
+      margin-bottom: 16px;
+    }
+
+    .policies-hero p {
+      max-width: 600px;
+      font-size: 1.1rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .policies-hero .badge {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: var(--bg-white);
+      margin-bottom: 0;
+    }
+
+    .policies-layout {
+      padding: 80px 0;
+      background-color: var(--bg-light);
+    }
+
+    .policies-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* Left Sidebar Menu */
+    .policies-sidebar {
+      position: sticky;
+      top: calc(var(--header-height) + 20px);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .sidebar-card {
+      background-color: var(--bg-white);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tab-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+      background: none;
+      border-left: 4px solid transparent;
+      border-right: none;
+      border-top: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .tab-link:last-child {
+      border-bottom: none;
+    }
+
+    .tab-link svg {
+      width: 20px;
+      height: 20px;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .tab-link:hover {
+      background-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .tab-link:hover svg {
+      color: var(--primary);
+    }
+
+    .tab-link.active {
+      color: var(--primary);
+      border-left-color: var(--primary);
+      background-color: var(--primary-light);
+    }
+
+    .tab-link.active svg {
+      color: var(--primary);
+    }
+
+    /* Help Box */
+    .help-card {
+      background-color: var(--primary-light);
+      padding: 32px 24px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .help-card h4 {
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .help-card p {
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .help-card-link {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: underline;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Right Content Pane */
+    .policies-content {
+      background-color: var(--bg-white);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 48px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .pane-title {
+      font-size: 2rem;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+
+    .tab-pane p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    /* Custom highlight box */
+    .highlight-box {
+      background-color: var(--bg-light);
+      border-radius: var(--radius-md);
+      padding: 24px 32px;
+      margin: 32px 0;
+      border-left: 4px solid var(--primary);
+    }
+
+    .box-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .box-header svg {
+      width: 20px;
+      height: 20px;
+      color: var(--primary);
+    }
+
+    .highlight-box ul {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .highlight-box li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+    }
+
+    .highlight-box li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    .pane-subtitle {
+      font-size: 1.35rem;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 992px) {
+      .policies-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .policies-sidebar {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+      .sidebar-card {
+        width: 100%;
+        display: flex;
+      }
+      .tab-link {
+        flex: 1;
+        justify-content: center;
+        border-bottom: none;
+        border-right: 1px solid var(--border-color);
+        border-left: none;
+        border-top: 4px solid transparent;
+        padding: 16px;
+      }
+      .tab-link:last-child {
+        border-right: none;
+      }
+      .tab-link.active {
+        border-left-color: transparent;
+        border-top-color: var(--primary);
+      }
+      .help-card {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar-card {
+        flex-direction: column;
+      }
+      .tab-link {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        border-top: none;
+        border-left: 4px solid transparent;
+        justify-content: flex-start;
+      }
+      .tab-link.active {
+        border-top-color: transparent;
+        border-left-color: var(--primary);
+      }
+      .policies-content {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header id="main-header" class="site-header scrolled">
+    <div class="header-container">
+      <div class="logo-wrapper">
+        <a href="index.html#home" class="logo" id="header-logo-link">
+          <img src="assets/logo.png?v=3" alt="Yash Facilities Logo" class="logo-icon" style="width:56px;height:56px;object-fit:contain;border-radius:8px;background:#fff;padding:3px;box-shadow:0 2px 10px rgba(0,0,0,0.2);">
+          <span class="logo-text">YASH <span class="highlight">FACILITIES</span></span>
+        </a>
+      </div>
+      
+      <nav class="nav-menu" id="nav-menu">
+        <a href="index.html#home" class="nav-link" id="nav-link-home">Home</a>
+        <a href="index.html#about" class="nav-link" id="nav-link-about">About</a>
+        <a href="index.html#services" class="nav-link" id="nav-link-services">Services</a>
+        <a href="index.html#process" class="nav-link" id="nav-link-process">Process</a>
+        <a href="index.html#gallery" class="nav-link" id="nav-link-gallery">Gallery</a>
+        <a href="index.html#contact" class="nav-link" id="nav-link-contact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="index.html#contact" class="btn btn-primary nav-cta" id="nav-cta-btn">Book Now</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Banner -->
+    <section class="policies-hero">
+      <div class="container">
+        <div class="badge">Policies &amp; Careers</div>
+        <h1>Policies &amp; Careers</h1>
+        <p>Transparency is the foundation of our care. Explore our legal frameworks and discover opportunities to join our compassionate team of dedicated professionals.</p>
+      </div>
+    </section>
+
+    <!-- Two-Column Policy Grid -->
+    <section class="policies-layout">
+      <div class="container">
+        <div class="policies-grid">
+          
+          <!-- Left Sidebar Tabs & Help Card -->
+          <aside class="policies-sidebar">
+            <div class="sidebar-card">
+              <button class="tab-link active" data-tab="privacy" id="tab-privacy">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                Privacy Policy
+              </button>
+              <button class="tab-link" data-tab="terms" id="tab-terms">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                Terms of Service
+              </button>
+              <button class="tab-link" data-tab="careers" id="tab-careers">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+                Join Our Team
+              </button>
+            </div>
+            
+            <div class="help-card">
+              <h4>Need Help?</h4>
+              <p>Have questions about our policies or recruitment?</p>
+              <a href="index.html#contact" class="help-card-link">Contact HR &rarr;</a>
+            </div>
+          </aside>
+
+          <!-- Right Content Pane -->
+          <div class="policies-content">
+            
+            <!-- Pane 1: Privacy Policy -->
+            <div class="tab-pane active" id="pane-privacy">
+              <h2 class="pane-title">Privacy Policy</h2>
+              <p>At YASH FACILITIES, we are committed to protecting the privacy and security of our clients and staff. This Privacy Policy outlines how we collect, use, and safeguard personal information in the context of our facility management and caregiving services.</p>
+              
+              <div class="highlight-box">
+                <div class="box-header">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                  Information We Collect
+                </div>
+                <ul>
+                  <li>Personal identification (Name, address, contact details)</li>
+                  <li>Medical history and health requirements for patient care</li>
+                  <li>Financial information for billing and transaction processing</li>
+                  <li>Employment history for career applicants</li>
+                </ul>
+              </div>
+
+              <h3 class="pane-subtitle">Data Protection &amp; Cookies</h3>
+              <p>We implement rigorous technical and organizational measures to protect your sensitive data. Our website uses minimal cookies necessary for functional performance and to improve your browsing experience. We do not sell your personal data to third parties.</p>
+            </div>
+
+            <!-- Pane 2: Terms of Service -->
+            <div class="tab-pane" id="pane-terms">
+              <h2 class="pane-title">Terms of Service</h2>
+              <p>By accessing and hiring staff through Yash Facilities, you agree to comply with the terms and conditions outlined below. These terms regulate the service agreements between the staff, clients, and agency.</p>
+              
+              <div class="highlight-box">
+                <div class="box-header">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                  Hiring &amp; Billing Agreements
+                </div>
+                <ul>
+                  <li>Staff assignments are scheduled monthly or per service basis, as agreed in the contract.</li>
+                  <li>Clients must treat all caregivers and domestic staff with dignity and respect.</li>
+                  <li>Replacements are provided within 24-48 hours if requested with valid reason.</li>
+                  <li>Direct employment of our staff without agency written consent is strictly prohibited.</li>
+                </ul>
+              </div>
+
+              <h3 class="pane-subtitle">Service Agreements &amp; Termination</h3>
+              <p>Either party may terminate the staffing agreement by providing a 15-day written notice. Any outstanding payments must be cleared before the release of the staff. We reserve the right to withdraw services immediately in case of staff safety concerns.</p>
+            </div>
+
+            <!-- Pane 3: Join Our Team (Careers) -->
+            <div class="tab-pane" id="pane-careers">
+              <h2 class="pane-title">Join Our Team</h2>
+              <p>At Yash Facilities, we believe that our employees are our greatest strength. We are constantly looking for compassionate, skilled, and dedicated caregivers, nurses, chefs, and maids to join our growing network in Bangalore.</p>
+              
+              <div class="highlight-box">
+                <div class="box-header">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                  Benefits of Joining Us
+                </div>
+                <ul>
+                  <li>Flexible shift timings (Day shifts, night shifts, and 24-hour live-in options)</li>
+                  <li>Industry-best compensation packages and timely monthly payouts</li>
+                  <li>Free training and professional development programs</li>
+                  <li>Healthcare and insurance benefits for full-time employees</li>
+                </ul>
+              </div>
+
+              <h3 class="pane-subtitle">How to Apply</h3>
+              <p>If you are passionate about caregiving and want to build a rewarding career, send your resume to <strong>yashfacilities1974@gmail.com</strong> or call us directly at <strong>+91 9980410819 / +91 8123872109</strong>. We conduct background verification checks and police clearances for all onboarding applicants.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <h4 class="logo-text">YASH <span class="highlight">FACILITIES</span></h4>
+        <p>Providing excellence in elder care and domestic staffing solutions across Bangalore. Your trust, our commitment.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Our Services</h5>
+        <ul>
+          <li><a href="index.html#services">Old Age Care</a></li>
+          <li><a href="index.html#services">Baby Care / Nanny</a></li>
+          <li><a href="index.html#services">Patient Care Attendant</a></li>
+          <li><a href="index.html#services">Home Nurses</a></li>
+          <li><a href="index.html#services">Private Maid</a></li>
+          <li><a href="index.html#services">Cooks &amp; Housekeeping</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h5>Contact</h5>
+        <p>Ashwath Nagara, Backside of Chemmanur Jeweller,<br>1st Cross Road, Marathahalli,<br>Bangalore - 560037, Karnataka</p>
+        <p>📞 +91 9980410819<br>📞 +91 8123872109</p>
+        <p>✉️ yashfacilities1974@gmail.com</p>
+      </div>
+      <div class="footer-quick">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#process">How It Works</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+          <li><a href="policies.html#privacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Yash Facilities. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Tab switching logic for policies page
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabLinks = document.querySelectorAll('.tab-link');
+      const tabPanes = document.querySelectorAll('.tab-pane');
+
+      function switchTab(tabId) {
+        tabLinks.forEach(link => {
+          if (link.getAttribute('data-tab') === tabId) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+
+        tabPanes.forEach(pane => {
+          if (pane.getAttribute('id') === `pane-${tabId}`) {
+            pane.classList.add('active');
+          } else {
+            pane.classList.remove('active');
+          }
+        });
+      }
+
+      tabLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          const tabId = link.getAttribute('data-tab');
+          switchTab(tabId);
+          // Update URL hash without jumping page
+          history.pushState(null, null, `#${tabId}`);
+        });
+      });
+
+      // Check hash on load to open correct tab
+      const hash = window.location.hash.substring(1);
+      if (hash && ['privacy', 'terms', 'careers'].includes(hash)) {
+        switchTab(hash);
+      }
+
+      // Handle mobile menu toggle on policies page
+      const menuToggle = document.getElementById('menu-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+          menuToggle.classList.toggle('active');
+          navMenu.classList.toggle('active');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
