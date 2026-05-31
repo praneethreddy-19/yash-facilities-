@@ -396,21 +396,85 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================================================
-  // 6. Scroll Reveal Observer for Pop Up Animations
+  // 6. Unified Premium Scroll Reveal Observer (Pop-Up Animations)
   // ==========================================================================
-  const revealElements = document.querySelectorAll('.reveal');
   
-  if (revealElements.length > 0) {
+  // Skip animations if user prefers reduced motion
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    
+    // Selectors to auto-reveal (all headings, paragraphs, lists, cards, buttons)
+    const AUTO_REVEAL_SELECTORS = [
+      'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+      'p', 'li',
+      '.badge',
+      '.btn',
+      '.service-card',
+      '.why-card',
+      '.step-item',
+      '.testimonial-slide',
+      '.gallery-item',
+      '.contact-info-item',
+      '.stat-item',
+      '.footer-brand',
+      '.footer-links',
+      '.footer-contact',
+      '.footer-quick',
+      'img:not(.logo-icon)',
+      'form',
+      '.highlight-box',
+      '.tab-link'
+    ].join(', ');
+
+    // Helper to determine the directional entrance animation based on screen position
+    function getRevealDirection(el) {
+      if (el.classList.contains('badge') || el.classList.contains('btn')) {
+        return 'pop-scale';
+      }
+      
+      const tag = el.tagName.toLowerCase();
+      if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tag)) {
+        return ''; // Headings slide straight up
+      }
+
+      const rect = el.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const vw = window.innerWidth;
+
+      if (centerX < vw * 0.35) return 'from-left';
+      if (centerX > vw * 0.65) return 'from-right';
+      return ''; // Default slide up
+    }
+
+    // Auto-tag matched text/UI elements with .reveal class
+    const candidateElements = document.querySelectorAll(AUTO_REVEAL_SELECTORS);
+    candidateElements.forEach(el => {
+      // Don't animate site header, footer navigation itself, or policies modal elements
+      if (el.closest('.site-header') || el.closest('#policy-modal-overlay')) return;
+      
+      // Add .reveal class if not already present
+      if (!el.classList.contains('reveal')) {
+        el.classList.add('reveal');
+      }
+      
+      // Determine and assign directional animations
+      const direction = getRevealDirection(el);
+      if (direction && !el.classList.contains('from-left') && !el.classList.contains('from-right') && !el.classList.contains('pop-scale')) {
+        el.classList.add(direction);
+      }
+    });
+
+    // Create a single Intersection Observer for all .reveal elements
+    const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          observer.unobserve(entry.target); // Trigger only once
+          observer.unobserve(entry.target); // Animate once
         }
       });
     }, {
-      threshold: 0.05,
-      rootMargin: '0px 0px -20px 0px'
+      threshold: 0.08, // Trigger when 8% of the element is visible
+      rootMargin: '0px 0px -30px 0px' // Offset slightly before viewport bottom
     });
 
     revealElements.forEach(el => {
@@ -419,89 +483,4 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
-
-// ==========================================================================
-// POP-UP SCROLL REVEAL — Auto-animates all text & UI elements on scroll
-// ==========================================================================
-(function initPopUpAnimations() {
-
-  // Skip if user prefers reduced motion
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  // Selectors to animate — covers all text, cards, images, buttons
-  const TARGETS = [
-    'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-    'p', 'li',
-    '.badge',
-    '.btn',
-    '.service-card',
-    '.why-card',
-    '.step-item',
-    '.testimonial-slide',
-    '.gallery-item',
-    '.contact-info-item',
-    '.stat-item',
-    '.footer-brand',
-    '.footer-links',
-    '.footer-contact',
-    '.footer-quick',
-    'img:not(.logo-icon)',
-    'form',
-    '.highlight-box',
-    '.tab-link'
-  ].join(', ');
-
-  // Direction helper — elements on the left side slide from left, right side from right
-  function getDirection(el) {
-    const rect = el.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const vw = window.innerWidth;
-    const tag = el.tagName.toLowerCase();
-
-    // Badges and small chips: scale pop
-    if (el.classList.contains('badge') || el.classList.contains('btn')) {
-      return 'pop-scale';
-    }
-    // Headings slide straight up
-    if (['h1','h2','h3','h4','h5','h6'].includes(tag)) {
-      return '';
-    }
-    // Cards/items on left third slide from left, right third from right
-    if (centerX < vw * 0.35) return 'from-left';
-    if (centerX > vw * 0.65) return 'from-right';
-    return ''; // default: slide up
-  }
-
-  // Assign pop-hidden to every matched element not inside the header
-  const allEls = document.querySelectorAll(TARGETS);
-  allEls.forEach(el => {
-    // Skip header nav elements and logo
-    if (el.closest('.site-header') || el.closest('#policy-modal-overlay')) return;
-    // Skip already-animated elements
-    if (el.classList.contains('pop-hidden')) return;
-
-    el.classList.add('pop-hidden');
-    const dir = getDirection(el);
-    if (dir) el.classList.add(dir);
-  });
-
-  // IntersectionObserver triggers pop-visible when element enters viewport
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('pop-visible');
-        observer.unobserve(entry.target); // animate once
-      }
-    });
-  }, {
-    threshold: 0.12,       // trigger when 12% visible
-    rootMargin: '0px 0px -40px 0px'  // slight offset from bottom
-  });
-
-  document.querySelectorAll('.pop-hidden').forEach(el => observer.observe(el));
-
-  // Re-run on any dynamically added content (e.g. modals opening)
-  window._popObserver = observer;
-
-})();
 

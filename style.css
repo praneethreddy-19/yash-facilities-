@@ -1378,18 +1378,32 @@ ul {
    ========================================================================== */
 .reveal {
   opacity: 0;
-  transform: translateY(30px) scale(0.95);
-  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
-              transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(30px) scale(0.96);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
 
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+/* Directional variants */
+.reveal.from-left {
+  transform: translateX(-45px) scale(0.97);
 }
 
-/* Staggered Delay Tokens */
+.reveal.from-right {
+  transform: translateX(45px) scale(0.97);
+}
+
+.reveal.pop-scale {
+  transform: scale(0.8);
+}
+
+/* Active / Visible state */
+.reveal.active {
+  opacity: 1 !important;
+  transform: translateY(0) translateX(0) scale(1) !important;
+}
+
+/* Staggered Delay Tokens & Auto-staggers for sibling elements */
 .delay-1 { transition-delay: 100ms; }
 .delay-2 { transition-delay: 200ms; }
 .delay-3 { transition-delay: 300ms; }
@@ -1397,56 +1411,21 @@ ul {
 .delay-5 { transition-delay: 500ms; }
 .delay-6 { transition-delay: 600ms; }
 
-/* ==========================================================================
-   Pop-Up Scroll Reveal Animations
-   ========================================================================== */
-
-/* Base hidden state — applied by JS before element enters viewport */
-.pop-hidden {
-  opacity: 0;
-  transform: translateY(40px) scale(0.97);
-  transition:
-    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
-}
-
-/* Slide from left */
-.pop-hidden.from-left {
-  transform: translateX(-50px) scale(0.97);
-}
-
-/* Slide from right */
-.pop-hidden.from-right {
-  transform: translateX(50px) scale(0.97);
-}
-
-/* Scale-only pop (for badges, chips, icons) */
-.pop-hidden.pop-scale {
-  transform: scale(0.75);
-}
-
-/* Visible state — added by IntersectionObserver */
-.pop-visible {
-  opacity: 1 !important;
-  transform: translateY(0) translateX(0) scale(1) !important;
-}
-
-/* Staggered delays for sibling children */
-.pop-hidden:nth-child(1) { transition-delay: 0ms; }
-.pop-hidden:nth-child(2) { transition-delay: 80ms; }
-.pop-hidden:nth-child(3) { transition-delay: 160ms; }
-.pop-hidden:nth-child(4) { transition-delay: 240ms; }
-.pop-hidden:nth-child(5) { transition-delay: 320ms; }
-.pop-hidden:nth-child(6) { transition-delay: 400ms; }
-.pop-hidden:nth-child(7) { transition-delay: 480ms; }
-.pop-hidden:nth-child(8) { transition-delay: 560ms; }
+.reveal:nth-child(1) { transition-delay: 0ms; }
+.reveal:nth-child(2) { transition-delay: 80ms; }
+.reveal:nth-child(3) { transition-delay: 160ms; }
+.reveal:nth-child(4) { transition-delay: 240ms; }
+.reveal:nth-child(5) { transition-delay: 320ms; }
+.reveal:nth-child(6) { transition-delay: 400ms; }
+.reveal:nth-child(7) { transition-delay: 480ms; }
+.reveal:nth-child(8) { transition-delay: 560ms; }
 
 /* Respect user preference for reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .pop-hidden {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
+
